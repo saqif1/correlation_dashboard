@@ -103,13 +103,6 @@ with st.expander("Advanced Options"):
         
     # Add option to show/hide recession periods
     show_recessions = st.checkbox("Show Recession Periods", value=True)
-    
-    # Add option to show standard deviation bands
-    show_std_bands = st.checkbox("Show Standard Deviation Bands", value=False)
-    if show_std_bands:
-        std_band_type = st.radio("Standard Deviation Bands", 
-                                ["±1 Standard Deviation", "±2 Standard Deviations"],
-                                index=0)
 
 # Add some spacing
 st.markdown("---")
@@ -201,41 +194,6 @@ def add_recession_shades(fig, data_start_date, data_end_date):
                 annotation_text=recession["name"],
                 annotation_position="top left"
             )
-    return fig
-
-def add_std_bands(fig, roll_corr, std_band_type):
-    """Add standard deviation bands to the correlation plot"""
-    # Calculate the standard deviation of all correlation values
-    all_corr_values = []
-    for pair in roll_corr.unstack().columns:
-        if isinstance(pair, tuple) and len(pair) == 2:
-            corr_series = roll_corr.unstack()[pair].dropna()
-            all_corr_values.extend(corr_series.values)
-    
-    if all_corr_values:
-        mean_corr = np.mean(all_corr_values)
-        std_corr = np.std(all_corr_values)
-        
-        if std_band_type == "±1 Standard Deviation":
-            upper_band = mean_corr + std_corr
-            lower_band = mean_corr - std_corr
-            band_label = "±1σ"
-        else:  # ±2 Standard Deviations
-            upper_band = mean_corr + 2 * std_corr
-            lower_band = mean_corr - 2 * std_corr
-            band_label = "±2σ"
-        
-        # Add the bands to the plot
-        fig.add_hline(y=upper_band, line_dash="dash", line_color="red", 
-                     annotation_text=f"Upper {band_label}", 
-                     annotation_position="top right")
-        fig.add_hline(y=lower_band, line_dash="dash", line_color="red", 
-                     annotation_text=f"Lower {band_label}", 
-                     annotation_position="bottom right")
-        fig.add_hline(y=mean_corr, line_dash="solid", line_color="green", 
-                     annotation_text="Mean", 
-                     annotation_position="top right")
-    
     return fig
 
 # Load and process data
@@ -330,15 +288,11 @@ if st.button("Calculate Correlations", type="primary"):
                                 if show_recessions:
                                     fig = add_recession_shades(fig, first_corr_date, data_end_date)
                                 
-                                # Add standard deviation bands if enabled
-                                if show_std_bands:
-                                    fig = add_std_bands(fig, roll_corr, std_band_type)
-                                
                                 # Set x-axis range to match our correlation data
                                 fig.update_xaxes(range=[first_corr_date, data_end_date])
                                 
                                 fig.update_layout(
-                                    title=f"Rolling Correlation ({window_label})",
+                                    title=f"Rolling Correlation ({window_label}) with Recession Periods",
                                     xaxis_title="Date",
                                     yaxis_title="Correlation",
                                     hovermode='x unified',
@@ -402,7 +356,6 @@ st.markdown("""
 - For portfolio construction, also consider covariance and beta relationships
 - Different rolling window sizes can reveal different patterns - experiment with various timeframes
 - Gray shaded areas represent recession periods as defined by the NBER that fall within your data range
-- Standard deviation bands show the variability of correlations across all pairs
 """)
 
 # LinkedIN

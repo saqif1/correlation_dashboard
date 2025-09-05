@@ -25,7 +25,7 @@ recessions = [
     {"name": "Latin American Debt Crisis", "start": "1982-01-01", "end": "1989-12-01"},
     {"name": "Black Monday", "start": "1987-10-01", "end": "1987-12-01"},
     {"name": "Asian Financial Crisis", "start": "1997-07-01", "end": "1998-12-01"},
-    {"name": "Russian Financial Crisis/LTCM Collapse", "start": "1998-08-01", "end": "1998-12-01"},
+    #{"name": "Russian Financial Crisis/LTCM Collapse", "start": "1998-08-01", "end": "1998-12-01"},
     {"name": "European Sovereign Debt Crisis", "start": "2010-01-01", "end": "2014-12-01"}
 ]
 
@@ -343,18 +343,18 @@ if st.button("Calculate Correlations", type="primary"):
                             mime="text/csv"
                         )
                     
-                    with col2:
-                        # Excel download
-                        output = io.BytesIO()
-                        with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                            results_df.to_excel(writer, sheet_name='Correlation Results', index=False)
-                            ret_df.describe().to_excel(writer, sheet_name='Return Statistics')
-                        st.download_button(
-                            label="📥 Download Excel",
-                            data=output.getvalue(),
-                            file_name="correlation_results.xlsx",
-                            mime="application/vnd.ms-excel"
-                        )
+                    # with col2:
+                    #     # Excel download
+                    #     output = io.BytesIO()
+                    #     with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                    #         results_df.to_excel(writer, sheet_name='Correlation Results', index=False)
+                    #         ret_df.describe().to_excel(writer, sheet_name='Return Statistics')
+                    #     st.download_button(
+                    #         label="📥 Download Excel",
+                    #         data=output.getvalue(),
+                    #         file_name="correlation_results.xlsx",
+                    #         mime="application/vnd.ms-excel"
+                    #     )
         else:
             st.error("Failed to load data. Please check your ticker symbols and try again.")
 

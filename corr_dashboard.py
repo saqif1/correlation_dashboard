@@ -26,7 +26,8 @@ recessions = [
     {"name": "Black Monday", "start": "1987-10-01", "end": "1987-12-01"},
     {"name": "Asian Financial Crisis", "start": "1997-07-01", "end": "1998-12-01"},
     #{"name": "Russian Financial Crisis/LTCM Collapse", "start": "1998-08-01", "end": "1998-12-01"},
-    {"name": "European Sovereign Debt Crisis", "start": "2010-01-01", "end": "2014-12-01"}
+    {"name": "European Sovereign Debt Crisis", "start": "2010-01-01", "end": "2014-12-01"},
+    {"name": "Liberation Day tariffs", "start": "2025-04-02", "end": "2014-04-10"}
 ]
 
 # Page configuration

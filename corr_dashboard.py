@@ -12,14 +12,21 @@ warnings.filterwarnings('ignore')
 
 # Recession data
 recessions = [
-    {"name": "1969-1970 Recession", "start": "1969-12-01", "end": "1970-11-01", "peak_unemployment": 6.1, "gdp_decline": -0.6},
-    {"name": "1973-1975 Recession", "start": "1973-11-01", "end": "1975-03-01", "peak_unemployment": 9.0, "gdp_decline": -3.2},
-    {"name": "1980 Recession", "start": "1980-01-01", "end": "1980-07-01", "peak_unemployment": 7.8, "gdp_decline": -2.2},
-    {"name": "1981-1982 Recession", "start": "1981-07-01", "end": "1982-11-01", "peak_unemployment": 10.8, "gdp_decline": -2.7},
-    {"name": "Early 1990s Recession", "start": "1990-07-01", "end": "1991-03-01", "peak_unemployment": 7.8, "gdp_decline": -1.4},
-    {"name": "Early 2000s Recession", "start": "2001-03-01", "end": "2001-11-01", "peak_unemployment": 6.3, "gdp_decline": -0.3},
-    {"name": "2008 Financial Crisis", "start": "2007-12-01", "end": "2009-06-01", "peak_unemployment": 10.0, "gdp_decline": -5.1},
-    {"name": "COVID-19 Recession", "start": "2020-02-01", "end": "2020-04-01", "peak_unemployment": 14.7, "gdp_decline": -19.2}
+    # Official U.S. Recessions (NBER-defined)
+    #{"name": "Early 1980s Recession", "start": "1980-01-01", "end": "1980-07-01"},
+    #{"name": "1981-1982 Recession", "start": "1981-07-01", "end": "1982-11-01"},
+    #{"name": "Savings and Loan Crisis", "start": "1986-01-01", "end": "1995-12-01"}, # Major crisis leading to the next recession
+    #{"name": "Early 1990s Recession", "start": "1990-07-01", "end": "1991-03-01"},
+    {"name": "Dot-Com Bubble", "start": "2001-03-01", "end": "2001-11-01"},
+    {"name": "Global Financial Crisis", "start": "2007-12-01", "end": "2009-06-01"},
+    {"name": "COVID-19 Recession", "start": "2020-02-01", "end": "2020-04-01"},
+    
+    # Major Financial Crises (Global/Regional Impact)
+    {"name": "Latin American Debt Crisis", "start": "1982-01-01", "end": "1989-12-01"},
+    {"name": "Black Monday", "start": "1987-10-01", "end": "1987-12-01"},
+    {"name": "Asian Financial Crisis", "start": "1997-07-01", "end": "1998-12-01"},
+    {"name": "Russian Financial Crisis/LTCM Collapse", "start": "1998-08-01", "end": "1998-12-01"},
+    {"name": "European Sovereign Debt Crisis", "start": "2010-01-01", "end": "2014-12-01"}
 ]
 
 # Page configuration
